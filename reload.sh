@@ -1,16 +1,27 @@
 #!/bin/bash
-# Reload GNOME Shell extension
-# On X11: Uses D-Bus to restart GNOME Shell
-# On Wayland: Logs out the user (only way to restart shell)
+#!/bin/bash
 
-if [ "$XDG_SESSION_TYPE" = "x11" ]; then
-    echo "Reloading GNOME Shell on X11..."
-    dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Meta.restart("Reloading extensions...")'
+# Script to reload the GNOME Shell extension
+
+EXTENSION_UUID="obision-extension-dash@obision.com"
+
+echo "🔄 Reloading extension..."
+
+# Disable extension
+gnome-extensions disable "$EXTENSION_UUID" 2>/dev/null
+
+# Wait a moment
+sleep 0.5
+
+# Enable extension
+gnome-extensions enable "$EXTENSION_UUID"
+
+if [ $? -eq 0 ]; then
+    echo "✓ Extension reloaded successfully"
 else
-    echo "On Wayland, you need to log out and back in to reload the extension."
-    echo "Do you want to log out now? (y/n)"
-    read -r answer
-    if [ "$answer" = "y" ]; then
-        gnome-session-quit --logout --no-prompt
-    fi
+    echo "✗ Failed to reload extension"
+    echo "Note: If this doesn't work, you may need to restart GNOME Shell:"
+    echo "  - X11: Press Alt+F2, type 'r', press Enter"
+    echo "  - Wayland: Log out and log back in"
+    exit 1
 fi

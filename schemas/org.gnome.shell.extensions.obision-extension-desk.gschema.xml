@@ -4,9 +4,9 @@
     
     <!-- Icon Settings -->
     <key name="icon-size" type="s">
-      <default>"medium"</default>
-      <summary>Icon Size</summary>
-      <description>Size of desktop icons: small (48px), medium (64px), large (96px), xlarge (128px)</description>
+      <default>"1x1"</default>
+      <summary>Default Icon Size</summary>
+      <description>Default size of desktop icons in grid cells: 1x1, 2x2, 3x3, 4x4</description>
     </key>
 
     <key name="show-hidden" type="b">
@@ -16,11 +16,69 @@
     </key>
 
     <!-- Grid Settings -->
+    <key name="grid-columns" type="i">
+      <default>12</default>
+      <range min="4" max="32"/>
+      <summary>Grid Columns</summary>
+      <description>Number of columns in the desktop grid</description>
+    </key>
+
+    <key name="grid-rows" type="i">
+      <default>8</default>
+      <range min="3" max="20"/>
+      <summary>Grid Rows</summary>
+      <description>Number of rows in the desktop grid</description>
+    </key>
+
+    <key name="use-grid" type="b">
+      <default>false</default>
+      <summary>Use Grid</summary>
+      <description>Snap icons to a grid layout</description>
+    </key>
+
+    <key name="grid-visible" type="b">
+      <default>false</default>
+      <summary>Show Grid</summary>
+      <description>Display the grid lines on the desktop</description>
+    </key>
+
+    <key name="grid-color" type="s">
+      <default>"rgba(255,255,255,0.3)"</default>
+      <summary>Grid Color</summary>
+      <description>Color of grid lines in CSS format</description>
+    </key>
+
+    <key name="grid-line-width" type="i">
+      <default>1</default>
+      <range min="1" max="4"/>
+      <summary>Grid Line Width</summary>
+      <description>Width of grid lines in pixels</description>
+    </key>
+
+    <key name="grid-dots-only" type="b">
+      <default>false</default>
+      <summary>Grid Dots Only</summary>
+      <description>Show only dots at grid intersections instead of full lines</description>
+    </key>
+
+    <key name="grid-line-pattern" type="s">
+      <default>"solid"</default>
+      <summary>Grid Line Pattern</summary>
+      <description>Pattern of grid lines: solid, dashed, dotted</description>
+    </key>
+
     <key name="grid-spacing" type="i">
       <default>12</default>
       <range min="4" max="48"/>
       <summary>Grid Spacing</summary>
       <description>Space between icons in pixels</description>
+    </key>
+
+    <!-- Icon Background (tile style) -->
+    <key name="icon-background-auto" type="b">
+      <default>false</default>
+      <summary>Auto Icon Background</summary>
+      <description>Use dominant color from icon as background when icon is smaller than cell</description>
     </key>
 
     <key name="sort-by" type="s">
@@ -60,6 +118,56 @@
       <default>"{}"</default>
       <summary>Icon Positions</summary>
       <description>JSON map of filenames to their custom positions</description>
+    </key>
+
+    <!-- Icon elevation/z-index for visual emphasis (JSON map: filename -> elevation level 0-3) -->
+    <key name="icon-elevations" type="s">
+      <default>"{}"</default>
+      <summary>Icon Elevations</summary>
+      <description>JSON map of filenames to their elevation level (0=flat, 1=low, 2=medium, 3=high)</description>
+    </key>
+
+    <!-- Icon background style (JSON map: filename -> background style) -->
+    <key name="icon-backgrounds" type="s">
+      <default>"{}"</default>
+      <summary>Icon Backgrounds</summary>
+      <description>JSON map of filenames to their background style (none, light, dark, accent, auto)</description>
+    </key>
+
+    <!-- Default icon elevation for all icons -->
+    <key name="default-elevation" type="i">
+      <default>0</default>
+      <range min="0" max="3"/>
+      <summary>Default Icon Elevation</summary>
+      <description>Default elevation level for all icons (0=flat, 1=low, 2=medium, 3=high)</description>
+    </key>
+
+    <!-- Default icon background style -->
+    <key name="default-background" type="s">
+      <default>"none"</default>
+      <summary>Default Icon Background</summary>
+      <description>Default background style for all icons: none, light, dark, accent</description>
+    </key>
+
+    <!-- Widget mode: icons marked as widgets have elevation and can notify -->
+    <key name="icon-widgets" type="s">
+      <default>"{}"</default>
+      <summary>Widget Icons</summary>
+      <description>JSON map of filenames marked as widgets (true/false). Widgets have elevation, background, and can notify.</description>
+    </key>
+
+    <!-- Do Not Disturb mode -->
+    <key name="do-not-disturb" type="b">
+      <default>false</default>
+      <summary>Do Not Disturb</summary>
+      <description>When enabled, all notifications are silenced (badges only, no popups)</description>
+    </key>
+
+    <!-- Maximum notification level allowed -->
+    <key name="max-notification-level" type="s">
+      <default>"critical"</default>
+      <summary>Maximum Notification Level</summary>
+      <description>Maximum allowed notification level: silent, subtle, normal, attention, critical</description>
     </key>
 
   </schema>

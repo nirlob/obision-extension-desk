@@ -1,6 +1,13 @@
 /* Obision Desk - Desktop Icons Extension Styles */
 
-/* Desktop Icon Container */
+/* ===== Icon Types ===== */
+/* 
+ * Two types of desktop items:
+ * 1. Icons (default): Flat, simple, traditional
+ * 2. Widgets: Elevated, with background, can notify
+ */
+
+/* Desktop Icon Container (base for both types) */
 .desktop-icon {
     padding: 8px;
     border-radius: 8px;
@@ -9,6 +16,7 @@
     max-width: 160px;
 }
 
+/* Normal icons - minimal styling */
 .desktop-icon:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
@@ -23,7 +31,112 @@
 }
 
 .desktop-icon.dragging {
-    opacity: 0.5;
+    opacity: 0.7;
+}
+
+/* ===== Widget Mode ===== */
+/* Widgets have visual distinction from regular icons */
+
+.desktop-icon.widget-mode {
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.desktop-icon.widget-mode:hover {
+    /* Widgets have more prominent hover */
+    transform: scale(1.02);
+}
+
+/* Widget indicator - subtle corner mark */
+.desktop-icon.widget-mode::after {
+    /* Could add a small indicator */
+}
+
+/* ===== Elevation Levels (Z-depth effect with shadows) ===== */
+/* Only meaningful for widgets */
+
+/* Elevation 0 - Flat (default, no shadow) */
+.desktop-icon.elevation-0 {
+    box-shadow: none;
+}
+
+/* Elevation 1 - Low (subtle lift) */
+.desktop-icon.elevation-1 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Elevation 2 - Medium (noticeable float) */
+.desktop-icon.elevation-2 {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35),
+        0 2px 4px rgba(0, 0, 0, 0.25),
+        0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Elevation 3 - High (prominent, "floating" effect) */
+.desktop-icon.elevation-3 {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover adds slight lift to elevated icons */
+.desktop-icon.elevation-1:hover,
+.desktop-icon.elevation-2:hover,
+.desktop-icon.elevation-3:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45),
+        0 6px 10px rgba(0, 0, 0, 0.35),
+        0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== Background Styles ===== */
+
+/* No background (default) */
+.desktop-icon.bg-none {
+    background-color: transparent;
+}
+
+/* Light background (frosted glass effect) */
+.desktop-icon.bg-light {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.desktop-icon.bg-light:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Dark background */
+.desktop-icon.bg-dark {
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.desktop-icon.bg-dark:hover {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+/* Accent color background (uses GNOME accent) */
+.desktop-icon.bg-accent {
+    background-color: rgba(53, 132, 228, 0.2);
+    border: 1px solid rgba(53, 132, 228, 0.3);
+}
+
+.desktop-icon.bg-accent:hover {
+    background-color: rgba(53, 132, 228, 0.3);
+}
+
+/* Glassmorphism effect for elevated + background */
+.desktop-icon.elevation-2.bg-light,
+.desktop-icon.elevation-3.bg-light {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.desktop-icon.elevation-2.bg-dark,
+.desktop-icon.elevation-3.bg-dark {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Icon Image Container */
@@ -245,4 +358,111 @@
     height: 1px;
     margin: 4px 12px;
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Notification System ===== */
+
+/* Notifying state - icon popup above all windows */
+.desktop-icon.notifying {
+    padding: 16px;
+    border-radius: 16px;
+    min-width: 120px;
+    max-width: 300px;
+}
+
+/* ===== Notification Levels ===== */
+
+/* Level: Normal - popup near icon */
+.desktop-icon.level-normal {
+    background-color: rgba(36, 36, 36, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Level: Attention - center screen */
+.desktop-icon.level-attention {
+    background-color: rgba(53, 132, 228, 0.9);
+    border: 2px solid rgba(53, 132, 228, 1);
+}
+
+/* Level: Critical - urgent */
+.desktop-icon.level-critical {
+    background-color: rgba(224, 27, 36, 0.95);
+    border: 2px solid rgba(255, 100, 100, 1);
+}
+
+/* Subtle glow effect for in-place notifications */
+.desktop-icon.notify-glow {
+    box-shadow: 0 0 20px rgba(53, 132, 228, 0.6),
+        0 0 40px rgba(53, 132, 228, 0.3),
+        0 0 60px rgba(53, 132, 228, 0.1);
+    background-color: rgba(53, 132, 228, 0.15);
+    border-radius: 12px;
+}
+
+/* Notification message text */
+.desktop-icon-notify-message {
+    color: rgba(255, 255, 255, 1);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    max-width: 250px;
+}
+
+/* With message - extra styling */
+.desktop-icon.notifying.has-message {
+    padding: 20px;
+}
+
+.desktop-icon.notifying.has-message .desktop-icon-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+/* ===== Badges ===== */
+
+.desktop-icon-badge {
+    min-width: 20px;
+    min-height: 20px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: rgba(224, 27, 36, 1);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Badge levels */
+.desktop-icon-badge.badge-silent {
+    background-color: rgba(98, 111, 128, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.desktop-icon-badge.badge-subtle {
+    background-color: rgba(53, 132, 228, 0.9);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.desktop-icon-badge.badge-normal {
+    background-color: rgba(53, 132, 228, 1);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.desktop-icon-badge.badge-attention {
+    background-color: rgba(230, 126, 34, 1);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.desktop-icon-badge.badge-critical {
+    background-color: rgba(224, 27, 36, 1);
+    border-color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    min-width: 24px;
+    min-height: 24px;
 }
